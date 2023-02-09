@@ -4,7 +4,7 @@
  * Plugin Name: Castlegate IT WP SEO Headings
  * Plugin URI: https://github.com/castlegateit/cgit-wp-seo-headings
  * Description: Yoast- and ACF-compatible SEO headings.
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: Castlegate IT
  * Author URI: https://www.castlegateit.co.uk/
  * License: MIT

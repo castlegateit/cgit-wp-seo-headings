@@ -4,7 +4,7 @@
  * Plugin Name: Castlegate IT WP SEO Headings
  * Plugin URI: https://github.com/castlegateit/cgit-wp-seo-headings
  * Description: Yoast- and ACF-compatible SEO headings.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Castlegate IT
  * Author URI: https://www.castlegateit.co.uk/
  * License: MIT
@@ -66,6 +66,17 @@ function cgit_seo_heading(string $heading = null): string
         $heading = trim(mb_substr($heading, $length));
     }
 
+    // Optionally remove the site name
+    $remove_site_name = apply_filters('cgit_seo_headings_remove_default_sitename', true);
+
+    if ($remove_site_name) {
+        // Match a separator followed by site name at the end of the heading
+        $regex = "/[\-\–\—\:\·\•\*\⋆\|\~\«\»\>\<]\s+";
+        $regex.= preg_quote(trim(get_bloginfo('name'))).'\s?$/';
+
+        $heading = trim(preg_replace($regex, '', $heading));
+    }
+
     // Return the title-based heading.
     if ($heading) {
         return $heading;
@@ -73,6 +84,11 @@ function cgit_seo_heading(string $heading = null): string
 
     // If nothing else is available, return the site name.
     return get_bloginfo('name');
+}
+
+function remove_site_name(string $string): string
+{
+
 }
 
 /**

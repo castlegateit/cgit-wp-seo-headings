@@ -1,21 +1,24 @@
 <?php
 
 /**
- * Plugin Name: Castlegate IT WP SEO Headings
- * Plugin URI: https://github.com/castlegateit/cgit-wp-seo-headings
- * Description: Yoast- and ACF-compatible SEO headings.
- * Version: 1.0.3
- * Author: Castlegate IT
- * Author URI: https://www.castlegateit.co.uk/
- * License: MIT
+ * Plugin Name:  Castlegate IT WP SEO Headings
+ * Plugin URI:   https://github.com/castlegateit/cgit-wp-seo-headings
+ * Description:  Yoast- and ACF-compatible SEO headings.
+ * Version:      1.0.4
+ * Requires PHP: 8.2
+ * Author:       Castlegate IT
+ * Author URI:   https://www.castlegateit.co.uk/
+ * License:      MIT
+ * Update URI:   https://github.com/castlegateit/cgit-wp-seo-headings
  */
 
-/**
- * Block direct access
- */
 if (!defined('ABSPATH')) {
     wp_die('Access denied');
 }
+
+define('CGIT_WP_SEO_HEADINGS_VERSION', '1.0.4');
+define('CGIT_WP_SEO_HEADINGS_PLUGIN_FILE', __FILE__);
+define('CGIT_WP_SEO_HEADINGS_PLUGIN_DIR', __DIR__);
 
 /**
  * Return SEO heading
@@ -141,6 +144,9 @@ add_action('acf/init', function () {
 
 /**
  * Move Yoast fields below ACF fields
+ *
+ * @param mixed $priority
+ * @return mixed
  */
 add_filter('wpseo_metabox_prio', function ($priority) {
     $move = apply_filters('cgit_seo_headings_move_yoast', true);
